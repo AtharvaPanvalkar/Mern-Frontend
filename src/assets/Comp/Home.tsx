@@ -1,5 +1,5 @@
 
-import { useState } from "react";
+
 import ProductCard from "./ProductCard";
 import SearchBar from "./SearchBar";
 import { Sidebar } from "./Sidebar";
@@ -7,12 +7,9 @@ import { SidebarItem } from "./SidebarItem";
 import { useNavigate } from "react-router-dom";
 
 export default function Home() {
-  const [searchQuery, setSearchQuery] = useState("");
+
   const navigate=useNavigate();
 
-  const handleSearch = (query: string) => {
-    setSearchQuery(query);
-  };
 
   return (
     <div className="flex">

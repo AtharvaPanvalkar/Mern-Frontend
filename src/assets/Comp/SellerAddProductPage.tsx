@@ -21,7 +21,7 @@
 
   function SellerAddProduct() {
     const navigate = useNavigate();
-    const [products, setProducts] = useState<Product[]>([]);
+    const [, setProducts] = useState<Product[]>([]);
     const [showForm, setShowForm] = useState(false);
     const [contents, setContents] = useState<Content[]>([]);
     const [newProduct, setNewProduct] = useState<Omit<Product, "_id">>({

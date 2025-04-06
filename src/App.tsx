@@ -7,8 +7,7 @@ import SellerAddProduct from "./assets/Comp/SellerAddProductPage";
 import { Signin } from "./pages/Register";
 import { Login } from "./pages/Login";
 import Sellerform from "./pages/Sellerinfo"
-import { Navigate } from "react-router-dom";
-import { ReactNode } from "react";
+
 import Homeseller from "./assets/Comp/Homeseller";
 import Homeuser from "./assets/Comp/Homeuser";
 import ProtectedRouteGenral from "./pages/Protected";

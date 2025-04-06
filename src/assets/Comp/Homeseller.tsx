@@ -1,4 +1,4 @@
-import { useState,useEffect } from "react";
+import { useEffect } from "react";
 import ProductCard from "./ProductCard";
 import SearchBar from "./SearchBar";
 import { Sidebar } from "./Sidebar";
@@ -8,16 +8,14 @@ import axios from "axios";
 import { BACK_END_URL } from "../../CONFIG";
 
 export default function Homeseller() {
-  const [searchQuery, setSearchQuery] = useState("");
+ 
   const navigate = useNavigate();
   const handleLogout = () => {
-    localStorage.removeItem("token"); // Remove token from storage
-    sessionStorage.removeItem("token"); // (If stored there too)
-    navigate("/"); // Redirect to login page
+    localStorage.removeItem("token"); 
+    sessionStorage.removeItem("token"); 
+    navigate("/");
   };
-  const handleSearch = (query: string) => {
-    setSearchQuery(query);
-  };
+
  useEffect(() => {
    axios
      .post(
@@ -28,14 +26,14 @@ export default function Homeseller() {
        }
      )
      .then((response) => {
-       // Handle successful response here (if needed)
+ 
        console.log("Owner Info: ", response.data);
      })
      .catch((err) => {
-       // If the error is a 404, navigate to the sellerinfo page
+      
        if (err.response && err.response.status === 404) {
          console.log("Owner info not found, navigating to sellerinfo page.");
-         navigate("/sellerinfo"); // Navigate to sellerinfo page
+         navigate("/sellerinfo"); 
        } else {
          // Log any other errors
          console.error("Error fetching product:", err);
