@@ -1,152 +1,11 @@
 
 
-  // import { useState ,useEffect} from "react";
-  // import axios from "axios";
-  // import { BACK_END_URL } from "../../CONFIG";
-
-  // interface Product {
-  //   id: number;
-  //   images: string[];
-  //   name: string;
-  //   description: string;
-  //   price: string;
-  //   available: number;
-  // }
-
-  // function SellerAddProduct() {
-  //   const [products, setProducts] = useState<Product[]>([]);
-  //   const [showForm, setShowForm] = useState(false);
-  //   const [newProduct, setNewProduct] = useState<Omit<Product, "id">>({
-  //     images: [],
-  //     name: "",
-  //     description: "",
-  //     price: "",
-  //     available: 0,
-  //   });
-
-  //   const handleAddProduct = async () => {
-  //     try {
-  //       const response = await axios.post(
-  //         BACK_END_URL + "/api/v1/upload",
-  //         newProduct,
-  //         {
-  //           headers: {
-  //             Authorization: localStorage.getItem("token"),
-  //           },
-  //         }
-  //       );
-        
-  //       setProducts((prev) => [...prev, { ...newProduct, id: response.data.id }]);
-  //       setShowForm(false);
-  //       setNewProduct({
-  //         images: [],
-  //         name: "",
-  //         description: "",
-  //         price: "",
-  //         available: 0,
-  //       });
-  //     } catch (error) {
-  //       console.error("Error adding product:", error);
-  //     }
-  //   };
-
-  //   const handleImageUpload = async (
-  //     event: React.ChangeEvent<HTMLInputElement>
-  //   ) => {
-  //     if (event.target.files) {
-  //       const files = Array.from(event.target.files);
-  //       const base64Images = await Promise.all(
-  //         files.map((file) => {
-  //           return new Promise<string>((resolve, reject) => {
-  //             const reader = new FileReader();
-  //             reader.readAsDataURL(file);
-  //             reader.onload = () => resolve(reader.result as string);
-  //             reader.onerror = reject;
-  //           });
-  //         })
-  //       );
-  //       setNewProduct((prev) => ({ ...prev, images: base64Images }));
-  //     }
-  //   };
-
-  //   return (
-  //     <div className="p-6 max-w-5xl mx-auto">
-  //       <h1 className="text-3xl font-bold mb-6 text-center">Manage Products</h1>
-
-  //       <button
-  //         onClick={() => setShowForm(true)}
-  //         className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
-  //       >
-  //         Add Product
-  //       </button>
-
-  //       {showForm && (
-  //         <div className="mt-6 p-6 border rounded-lg shadow-md bg-white">
-  //           <input
-  //             type="file"
-  //             multiple
-  //             onChange={handleImageUpload}
-  //             className="block w-full border p-2 rounded mb-2"
-  //           />
-  //           <input
-  //             type="text"
-  //             placeholder="Product Name"
-  //             value={newProduct.name}
-  //             onChange={(e) =>
-  //               setNewProduct({ ...newProduct, name: e.target.value })
-  //             }
-  //             className="block w-full border p-2 rounded mb-2"
-  //           />
-  //           <input
-  //             type="text"
-  //             placeholder="Description"
-  //             value={newProduct.description}
-  //             onChange={(e) =>
-  //               setNewProduct({ ...newProduct, description: e.target.value })
-  //             }
-  //             className="block w-full border p-2 rounded mb-2"
-  //           />
-  //           <input
-  //             type="text"
-  //             placeholder="Price"
-  //             value={newProduct.price}
-  //             onChange={(e) =>
-  //               setNewProduct({ ...newProduct, price: e.target.value })
-  //             }
-  //             className="block w-full border p-2 rounded mb-2"
-  //           />
-  //           <input
-  //             type="number"
-  //             placeholder="Available"
-  //             value={newProduct.available}
-  //             onChange={(e) =>
-  //               setNewProduct({
-  //                 ...newProduct,
-  //                 available: Number(e.target.value),
-  //               })
-  //             }
-  //             className="block w-full border p-2 rounded mb-4"
-  //           />
-  //           <button
-  //             className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
-  //             onClick={handleAddProduct}
-  //           >
-  //             Save Product
-  //           </button>
-  //         </div>
-  //       )}
-  //     </div>
-  //   );
-  // }
-
-  // export default SellerAddProduct;
-
   import { useState, useEffect } from "react";
   import axios from "axios";
   import { BACK_END_URL } from "../../CONFIG";
   import { useNavigate } from "react-router-dom";
 
-  // Inside the component:
+  
  
 
  export interface Product {
@@ -209,7 +68,7 @@
        }
      });
  }, [navigate]);  
-    // ✅ Fetch products when component mounts
+   
     useEffect(() => {
       // Fetch all content
       //  fetch("http://localhost:3000/api/v1/contents")
@@ -226,7 +85,7 @@
 
       fetch(`${BACK_END_URL}/api/v1/contents`, {
         method: "GET",
-        headers, // Use dynamically created headers object
+        headers, 
       })
         .then((res) => res.json())
         .then((data) => setContents(data))
@@ -296,7 +155,7 @@
         </button>
         <br />
 
-        {/* ✅ Add Product Form (Visible when showForm is true) */}
+       
         {showForm && (
           <div className="mt-6 p-6 border rounded-lg shadow-md bg-white">
             <input

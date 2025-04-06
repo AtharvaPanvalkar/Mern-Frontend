@@ -1,39 +1,4 @@
-// import { useState } from "react";
-// import ProductCard from "../src/assets/Comp/ProductCard";
-// import SearchBar from "./assets/Comp/SearchBar";
 
-// export default function App() {
-//   const [searchQuery, setSearchQuery] = useState("");
-
-//   const handleSearch = (query: string) => {
-//     setSearchQuery(query);
-//   };
-
-//   return (
-//     <div className="p-4">
-//       {/* Search Bar */}
-//       <SearchBar onSearch={handleSearch} />
-
-//       {/* Product Cards */}
-//       <div className="flex flex-wrap gap-4 mt-4">
-//         <ProductCard
-//           image="./src/assets/Img/jeans.jpg"
-//           name="T-Shirt"
-//           description="Comfortable and stylish cotton t-shirt."
-//           price="$19.99"
-//           available={25}
-//         />
-//         <ProductCard
-//           image="./src/assets/Img/jeans.jpg"
-//           name="Jeans"
-//           description="Premium quality blue denim jeans."
-//           price="$49.99"
-//           available={15}
-//         />
-//       </div>
-//     </div>
-//   );
-// }
 import { useState } from "react";
 import ProductCard from "./ProductCard";
 import SearchBar from "./SearchBar";
