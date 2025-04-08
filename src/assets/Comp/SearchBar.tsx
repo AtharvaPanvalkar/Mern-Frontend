@@ -13,6 +13,7 @@
     available?: string;
     price?: string;
     multipleImages?: string[];
+    Size?:string;
     Profilepic?: string;
     location?: string;
     contact?: string;
@@ -60,6 +61,7 @@
             <option value="store">Stores</option>
             <option value="product">Products</option>
             <option value="location">Locations</option>
+            <option value="Size">Size</option>
             <option value="Forwhom">Gender wise</option>
             <option value="desc">description</option>
             <option value="color">color</option>

@@ -14,6 +14,7 @@ export interface Content {
   owner: string;
   color: string;
   clothingforwho: string;
+  Size:string;
 }
 
 export default function ProductCard() {
@@ -56,6 +57,9 @@ export default function ProductCard() {
           </p>
           <p className="text-gray-900 mt-2 text-sm sm:text-base">
             <strong>Color:</strong> {content.color}
+          </p>
+          <p className="text-gray-900 mt-2 text-sm sm:text-base">
+            <strong>Size:</strong> {content.Size}
           </p>
           <p className="text-gray-900 mt-2 text-sm sm:text-base">
             <strong>Type:</strong> {content.clothingforwho}

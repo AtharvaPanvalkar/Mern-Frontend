@@ -12,6 +12,7 @@ interface Product {
   multipleImages: string[];
   color: string;
   clothingforwho: string;
+  Size:string;
 }
 
 export interface OwnerInfo {
@@ -107,9 +108,10 @@ export default function ProductPage() {
         {/* Product Info */}
         <h1 className="text-3xl font-bold mt-4">{product.name}</h1>
         <p className="text-gray-600 mt-2">{product.description}</p>
-        <p className="text-gray-900 mt-2"> Color:{product.color}</p>
-        <p className="text-gray-900 mt-2">Type:{product.clothingforwho}</p>
-        <p className="text-2xl font-semibold mt-2">Price: ₹{product.price}</p>
+        <p className="text-gray-900 mt-2"> Color :{product.color}</p>
+        <p className="text-gray-900 mt-2"> Size :{product.Size}</p>
+        <p className="text-gray-900 mt-2">Type :{product.clothingforwho}</p>
+        <p className="text-2xl font-semibold mt-2">Price : ₹{product.price}</p>
         <p
           className={`mt-1 ${
             product.available > 0 ? "text-green-600" : "text-red-600"

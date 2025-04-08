@@ -17,6 +17,7 @@
    available: number;
    clothingforwho :string;
    color:string;
+   Size:string;
  }
 
   function SellerAddProduct() {
@@ -32,6 +33,7 @@
       available: 0,
       clothingforwho: "Men",
       color: "",
+      Size:"",
     });
     interface Content {
       _id: string;
@@ -42,6 +44,7 @@
       multipleImages: string[];
       clothingforwho: string;
       color: string;
+      Size:string;
     }
    
  useEffect(() => {
@@ -115,7 +118,8 @@
           price: "",
           available: 0,
              clothingforwho :"",
-   color:""
+   color:"",
+   Size:"",
         });
       } catch (error) {
         console.error("Error adding product:", error);
@@ -155,7 +159,6 @@
         </button>
         <br />
 
-       
         {showForm && (
           <div className="mt-6 p-6 border rounded-lg shadow-md bg-white">
             <input
@@ -212,6 +215,15 @@
               }
               className="block w-full border p-2 rounded mb-4"
             />
+            <input
+              type="text"
+              placeholder="Size"
+              value={newProduct.Size}
+              onChange={(e) =>
+                setNewProduct({ ...newProduct, Size: e.target.value })
+              }
+              className="block w-full border p-2 rounded mb-4"
+            />
             <select
               name="forwhom"
               id="Unisex"
@@ -250,6 +262,7 @@
               <hr />
               <p className="text-gray-600 mt-2">{content.description}</p>
               <p className="text-gray-900 mt-2"> Color : {content.color}</p>
+              <p className="text-gray-900 mt-2"> Size : {content.Size}</p>
               <p className="text-gray-900 mt-2">
                 Type : {content.clothingforwho}
               </p>

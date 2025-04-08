@@ -72,7 +72,10 @@ const SellerPage = () => {
               </h3>
               <p className="text-gray-600 mt-2">{content.description}</p>
               <p className="text-gray-600 mt-2">Color : {content.color}</p>
-              <p className="text-gray-600 mt-2">Type : {content.clothingforwho}</p>
+              <p className="text-gray-600 mt-2">Size : {content.Size}</p>
+              <p className="text-gray-600 mt-2">
+                Type : {content.clothingforwho}
+              </p>
               <p className="text-lg font-semibold text-gray-800 mt-2">
                 Price : <span className="text-blue-600">${content.price}</span>
               </p>
@@ -80,7 +83,7 @@ const SellerPage = () => {
                 Available: {content.available}
               </p>
 
-           {/* Image Section */}
+              {/* Image Section */}
               <div className="flex flex-wrap gap-3 mt-4">
                 {/* {content.multipleImages.map((img, index) => (
               <img

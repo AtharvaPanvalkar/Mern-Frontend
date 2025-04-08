@@ -14,6 +14,7 @@ interface Product {
   available: number;
   color: string;
   clothingforwho: string;
+  Size: string;
 }
 
 function ProductDetails() {
@@ -167,6 +168,13 @@ function ProductDetails() {
         type="text"
         value={product.color}
         onChange={(e) => setProduct({ ...product, color: e.target.value })}
+        className="block w-full border p-2 rounded mb-2"
+      />
+      <p>Size</p>
+      <input
+        type="text"
+        value={product.Size}
+        onChange={(e) => setProduct({ ...product, Size: e.target.value })}
         className="block w-full border p-2 rounded mb-2"
       />
       <p>Type</p>
