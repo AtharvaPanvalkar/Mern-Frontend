@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { useLocation,useNavigate } from "react-router-dom";
 import { BACK_END_URL } from "../../CONFIG";
+ //@ts-ignore
 import * as QRCode from "qrcode";
 
 
