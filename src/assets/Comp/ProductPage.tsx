@@ -3,8 +3,6 @@
 import { useEffect, useState } from "react";
 import { useLocation,useNavigate } from "react-router-dom";
 import { BACK_END_URL } from "../../CONFIG";
-//@ts-ignore
-import { QRCodeCanvas } from "qrcode.react"; // Import the QRCodeCanvas component
 
 interface Product {
   name: string;
@@ -36,18 +34,6 @@ export default function ProductPage() {
   const [product, setProduct] = useState<Product | null>(null);
   const [ownerInfo, setOwnerInfo] = useState<OwnerInfo | null>(null);
   const [currentImage, setCurrentImage] = useState(0);
-      const downloadQRCode = () => {
-        const canvas = document.getElementById(
-          "qrCodeCanvas"
-        ) as HTMLCanvasElement;
-        if (canvas) {
-          const link = document.createElement("a");
-          link.href = canvas.toDataURL("image/png");
-          link.download = "product-link-qr-code.png";
-          link.click();
-        }
-      };
-
 
   useEffect(() => {
     const token = localStorage.getItem("token"); // Might be null
@@ -135,24 +121,6 @@ export default function ProductPage() {
             ? `In Stock: ${product.available}`
             : "Out of Stock"}
         </p>
-        {/* QR Code and Download Button */}
-        <div className="flex justify-center mt-4">
-          <button
-            onClick={downloadQRCode}
-            className="bg-black text-white px-6 py-2 rounded hover:bg-gray-800"
-          >
-            Download QR Code
-          </button>
-          <div className="mt-4 hidden">
-            <QRCodeCanvas
-              id="qrCodeCanvas"
-              value={window.location.href}
-              size={256}
-              level="H"
-              includeMargin={true}
-            />
-          </div>
-        </div>
 
         {/* Seller Info */}
         <div
