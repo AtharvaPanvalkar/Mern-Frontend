@@ -6,6 +6,8 @@ import { BACK_END_URL } from "../../CONFIG";
 import * as QRCode from "qrcode";
 
 
+
+
 interface Product {
   name: string;
   description: string;
