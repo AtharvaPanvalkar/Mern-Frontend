@@ -11,9 +11,6 @@ export default defineConfig({
   optimizeDeps: {
     include: ["jwt-decode,"], // Force Vite to pre-bundle `jwt-decode` if it's causing issues
   },
-    build: {
-    rollupOptions: {
-      external: ['qrcode.react'],
-    },}
+
   
 });
