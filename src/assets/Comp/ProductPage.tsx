@@ -3,6 +3,8 @@
 import { useEffect, useState } from "react";
 import { useLocation,useNavigate } from "react-router-dom";
 import { BACK_END_URL } from "../../CONFIG";
+import * as QRCode from "qrcode";
+
 
 interface Product {
   name: string;
@@ -34,6 +36,22 @@ export default function ProductPage() {
   const [product, setProduct] = useState<Product | null>(null);
   const [ownerInfo, setOwnerInfo] = useState<OwnerInfo | null>(null);
   const [currentImage, setCurrentImage] = useState(0);
+  const generateAndDownloadQR = async () => {
+    const url = window.location.href;
+
+    try {
+      const canvas = document.createElement("canvas");
+      await QRCode.toCanvas(canvas, url, { width: 300 });
+
+      const link = document.createElement("a");
+      link.download = "product-page-qr.png";
+      link.href = canvas.toDataURL("image/png");
+      link.click();
+    } catch (error) {
+      console.error("QR code generation failed:", error);
+    }
+  };
+
 
   useEffect(() => {
     const token = localStorage.getItem("token"); // Might be null
@@ -121,6 +139,12 @@ export default function ProductPage() {
             ? `In Stock: ${product.available}`
             : "Out of Stock"}
         </p>
+        <button
+          onClick={generateAndDownloadQR}
+          className="mt-6 bg-black text-white px-4 py-2 rounded hover:bg-gray-800 transition"
+        >
+          Download QR for this page
+        </button>
 
         {/* Seller Info */}
         <div
