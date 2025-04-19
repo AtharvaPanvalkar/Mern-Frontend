@@ -53,7 +53,7 @@ export function Signin() {
         >
           <option value="User">user</option>
           <option value="Business Owner">Business Owner</option>
-          <option value="Admin">Admin</option>
+         
         </select>
 
         <div className=" flex justify-center pt-4">

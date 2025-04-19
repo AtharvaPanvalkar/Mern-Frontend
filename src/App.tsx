@@ -12,6 +12,8 @@ import Homeseller from "./assets/Comp/Homeseller";
 import Homeuser from "./assets/Comp/Homeuser";
 import ProtectedRouteGenral from "./pages/Protected";
 import ProductDetails from "./assets/Comp/ProductDetails";
+import AdminPage from "./assets/Comp/Adminpage";
+import Homeadminuser from "./assets/Comp/HomeAdmin";
 
 
 
@@ -39,9 +41,7 @@ export default function App() {
           path="/selleradd"
           element={
             <ProtectedRouteGenral allowedRoles={["Business Owner"]}>
-             
-                <SellerAddProduct />
-            
+              <SellerAddProduct />
             </ProtectedRouteGenral>
           }
         />
@@ -49,9 +49,23 @@ export default function App() {
           path="/Owner"
           element={
             <ProtectedRouteGenral allowedRoles={["Business Owner"]}>
-              
-                <Homeseller />
-              
+              <Homeseller />
+            </ProtectedRouteGenral>
+          }
+        />
+        <Route
+          path="/AdminHome"
+          element={
+            <ProtectedRouteGenral allowedRoles={["Admin"]}>
+              <Homeadminuser />
+            </ProtectedRouteGenral>
+          }
+        />
+        <Route
+          path="/Admin"
+          element={
+            <ProtectedRouteGenral allowedRoles={["Admin"]}>
+              <AdminPage />
             </ProtectedRouteGenral>
           }
         />
@@ -60,9 +74,7 @@ export default function App() {
           path="/product-details/:id"
           element={
             <ProtectedRouteGenral allowedRoles={["Business Owner"]}>
-             
-                <ProductDetails />
-       
+              <ProductDetails />
             </ProtectedRouteGenral>
           }
         />
