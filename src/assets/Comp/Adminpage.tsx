@@ -16,7 +16,7 @@ const AdminPage: React.FC = () => {
   const [businesses, setBusinesses] = useState<Seller[]>([]);
 
   useEffect(() => {
-    fetch(`${BACK_END_URL}/api/seller/all`)
+    fetch(`${BACK_END_URL}/api/a1/seller/all`)
       .then((res) => res.json())
       .then((data: Seller[]) => setBusinesses(data))
       .catch((err) => console.error("❌ Error fetching sellers:", err));
