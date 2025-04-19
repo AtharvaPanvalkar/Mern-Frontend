@@ -4,6 +4,11 @@ import { useEffect, useState } from "react";
 import { useLocation,useNavigate } from "react-router-dom";
 import { BACK_END_URL } from "../../CONFIG";
 
+
+import { QRCodeCanvas } from "qrcode.react";
+import { toPng } from "html-to-image";
+import { useRef } from "react";
+
 interface Product {
   name: string;
   description: string;
@@ -30,6 +35,22 @@ export default function ProductPage() {
   const contentId = searchParams.get("id");
   const owner = searchParams.get("owner");
  
+
+
+const qrRef = useRef<HTMLDivElement>(null);
+
+const downloadQR = () => {
+  if (!qrRef.current) return;
+  toPng(qrRef.current)
+    .then((dataUrl) => {
+      const link = document.createElement("a");
+      link.download = "qr-code.png";
+      link.href = dataUrl;
+      link.click();
+    })
+    .catch((err) => console.error("QR download error:", err));
+};
+
 
   const [product, setProduct] = useState<Product | null>(null);
   const [ownerInfo, setOwnerInfo] = useState<OwnerInfo | null>(null);
@@ -121,6 +142,20 @@ export default function ProductPage() {
             ? `In Stock: ${product.available}`
             : "Out of Stock"}
         </p>
+        <div className="mt-8 text-center">
+          <div
+            ref={qrRef}
+            className="inline-block bg-white p-4 rounded shadow-md"
+          >
+            <QRCodeCanvas value={window.location.href} size={128} />
+          </div>
+          <button
+            onClick={downloadQR}
+            className="mt-4 bg-black text-white px-6 py-2 rounded hover:bg-gray-800 transition duration-300"
+          >
+            Download QR Code
+          </button>
+        </div>
 
         {/* Seller Info */}
         <div

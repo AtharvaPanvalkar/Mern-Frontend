@@ -1,10 +1,10 @@
-import { jwtDecode } from "jwt-decode"; // Correct import
+import { jwtDecode } from "jwt-decode";
 import { ReactNode } from "react";
 import { Navigate } from "react-router-dom";
 
 interface ProtectedRouteProps2 {
   children: ReactNode;
-  allowedRoles: string[]; // Define which roles can access the route
+  allowedRoles: string[]; 
 }
 
 interface DecodedToken {
@@ -13,10 +13,10 @@ interface DecodedToken {
 }
 
 const ProtectedRouteGenral = ({ children, allowedRoles }: ProtectedRouteProps2) => {
-  const token = localStorage.getItem("token"); // Get JWT from localStorage
+  const token = localStorage.getItem("token"); 
 
   if (!token) {
-    return <Navigate to="/login" replace />; // Redirect if no token is present
+    return <Navigate to="/login" replace />;
   }
 
   try {
