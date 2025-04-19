@@ -4,9 +4,11 @@ import { useEffect, useState } from "react";
 import { useLocation,useNavigate } from "react-router-dom";
 import { BACK_END_URL } from "../../CONFIG";
 
-
+//@ts-ignore
 import { QRCodeCanvas } from "qrcode.react";
+//@ts-ignore
 import { toPng } from "html-to-image";
+//@ts-ignore
 import { useRef } from "react";
 
 interface Product {
@@ -41,13 +43,13 @@ const qrRef = useRef<HTMLDivElement>(null);
 
 const downloadQR = () => {
   if (!qrRef.current) return;
-  toPng(qrRef.current)
+  toPng(qrRef.current) //@ts-ignore
     .then((dataUrl) => {
       const link = document.createElement("a");
       link.download = "qr-code.png";
       link.href = dataUrl;
       link.click();
-    })
+    }) //@ts-ignore
     .catch((err) => console.error("QR download error:", err));
 };
 
@@ -155,7 +157,7 @@ const downloadQR = () => {
           >
             Download QR Code
           </button>
-        </div>
+        </div>  
         {/* Seller Info */}
         <div
           className="flex items-center mt-6 p-4 border-t"
