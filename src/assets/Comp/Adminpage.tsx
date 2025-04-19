@@ -16,7 +16,7 @@ const AdminPage: React.FC = () => {
   const [businesses, setBusinesses] = useState<Seller[]>([]);
 
   useEffect(() => {
-    fetch(`${BACK_END_URL}/api/a1/seller/all`)
+    fetch(`${BACK_END_URL}/seller/all`)
       .then((res) => res.json())
       .then((data: Seller[]) => setBusinesses(data))
       .catch((err) => console.error("❌ Error fetching sellers:", err));
@@ -30,7 +30,7 @@ const AdminPage: React.FC = () => {
 
     try {
       const res = await fetch(
-        `${BACK_END_URL}/api/a1/seller/delete-business/${ownerId}`,
+        `${BACK_END_URL}/seller/delete-business/${ownerId}`,
         {
           method: "DELETE",
         }
