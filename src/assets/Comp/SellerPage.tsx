@@ -1,9 +1,11 @@
 // import ProductCard from "./ProductCard";
 import { useNavigate, useLocation } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect,useRef, useState } from "react";
 import { OwnerInfo } from "./ProductPage";
 import { Content } from "./ProductCard";
 import { BACK_END_URL } from "../../CONFIG";
+import { QRCodeCanvas } from "qrcode.react";
+// import { toPng } from "html-to-image";
 const SellerPage = () => {
   const [ownerInfo, setOwnerInfo] = useState<OwnerInfo | null>(null);
   const [contents, setContents] = useState<Content[]>([]);
@@ -11,6 +13,41 @@ const SellerPage = () => {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const ownerID = searchParams.get("id");
+  
+  const qrRef = useRef<HTMLDivElement>(null);
+   const [isCanvasReady, setIsCanvasReady] = useState(false);
+  
+  // const downloadQR = () => {
+  //   if (!qrRef.current) return;
+  //   toPng(qrRef.current)
+  //     .then((dataUrl) => {
+  //       const link = document.createElement("a");
+  //       link.download = "qr-code.png";
+  //       link.href = dataUrl;
+  //       link.click();
+  //     })
+  //     .catch((err) => console.error("QR download error:", err));
+  // };
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsCanvasReady(true); // Mark canvas as ready after it's been rendered
+    }, 100); // Add a small delay to ensure QR code has time to render
+    return () => clearTimeout(timer);
+  }, []);
+  
+  const downloadQR = () => {
+    if (!isCanvasReady) return; // Wait until the QR canvas is ready
+  
+    const canvas = qrRef.current?.querySelector("canvas");
+    if (canvas) {
+      const dataUrl = canvas.toDataURL();
+      const link = document.createElement("a");
+      link.href = dataUrl;
+      link.download = "qr-code.png";
+      link.click();
+    }
+  };
+  
 
   useEffect(() => {
     if (!ownerID) return;
@@ -55,6 +92,20 @@ const SellerPage = () => {
           <p className="text-blue-600 cursor-pointer mt-1">
             {ownerInfo.contact}
           </p>
+                  <div className="text-center">
+                    {/* QR code canvas rendered but not visible */}
+                    <div ref={qrRef} style={{ visibility: "hidden" }}>
+                      <QRCodeCanvas value={window.location.href} size={128} />
+                    </div>
+          
+                    {/* Download button */}
+                    <button
+                      onClick={downloadQR}
+                      className="mt-1 px-6 py-3 rounded-xl bg-gradient-to-r from-black to-gray-800 text-white font-medium text-lg shadow-lg hover:scale-105 transform transition-all duration-300 ease-in-out"
+                    >
+                      📥 Download QR Code
+                    </button>
+                  </div>
         </div>
       ) : (
         <p>Loading seller info...</p>
