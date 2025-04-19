@@ -6,7 +6,7 @@ import { BACK_END_URL } from "../../CONFIG";
 
 
 import { QRCodeCanvas } from "qrcode.react";
-import { toPng } from "html-to-image";
+// import { toPng } from "html-to-image";
 import { useRef } from "react";
 
 interface Product {
@@ -38,18 +38,39 @@ export default function ProductPage() {
 
 
 const qrRef = useRef<HTMLDivElement>(null);
+ const [isCanvasReady, setIsCanvasReady] = useState(false);
+
+// const downloadQR = () => {
+//   if (!qrRef.current) return;
+//   toPng(qrRef.current)
+//     .then((dataUrl) => {
+//       const link = document.createElement("a");
+//       link.download = "qr-code.png";
+//       link.href = dataUrl;
+//       link.click();
+//     })
+//     .catch((err) => console.error("QR download error:", err));
+// };
+useEffect(() => {
+  const timer = setTimeout(() => {
+    setIsCanvasReady(true); // Mark canvas as ready after it's been rendered
+  }, 100); // Add a small delay to ensure QR code has time to render
+  return () => clearTimeout(timer);
+}, []);
 
 const downloadQR = () => {
-  if (!qrRef.current) return;
-  toPng(qrRef.current)
-    .then((dataUrl) => {
-      const link = document.createElement("a");
-      link.download = "qr-code.png";
-      link.href = dataUrl;
-      link.click();
-    })
-    .catch((err) => console.error("QR download error:", err));
+  if (!isCanvasReady) return; // Wait until the QR canvas is ready
+
+  const canvas = qrRef.current?.querySelector("canvas");
+  if (canvas) {
+    const dataUrl = canvas.toDataURL();
+    const link = document.createElement("a");
+    link.href = dataUrl;
+    link.download = "qr-code.png";
+    link.click();
+  }
 };
+
 
 
   const [product, setProduct] = useState<Product | null>(null);
@@ -142,7 +163,7 @@ const downloadQR = () => {
             ? `In Stock: ${product.available}`
             : "Out of Stock"}
         </p>
-        <div className="mt-8 text-center">
+        {/* <div className="mt-8 text-center">
           <div
             ref={qrRef}
             style={{ display: "none" }} // Hide the QR code
@@ -150,6 +171,20 @@ const downloadQR = () => {
           >
             <QRCodeCanvas value={window.location.href} size={128} />
           </div>
+          <button
+            onClick={downloadQR}
+            className="mt-4 bg-black text-white px-6 py-2 rounded hover:bg-gray-800 transition duration-300"
+          >
+            Download QR Code
+          </button>
+        </div> */}
+        <div className="mt-8 text-center">
+          {/* QR code canvas rendered but not visible */}
+          <div ref={qrRef} style={{ visibility: "hidden" }}>
+            <QRCodeCanvas value={window.location.href} size={128} />
+          </div>
+
+          {/* Download button */}
           <button
             onClick={downloadQR}
             className="mt-4 bg-black text-white px-6 py-2 rounded hover:bg-gray-800 transition duration-300"
