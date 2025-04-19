@@ -187,9 +187,9 @@ const downloadQR = () => {
           {/* Download button */}
           <button
             onClick={downloadQR}
-            className="mt-4 bg-black text-white px-6 py-2 rounded hover:bg-gray-800 transition duration-300"
+            className="mt-4 px-6 py-3 rounded-xl bg-gradient-to-r from-black to-gray-800 text-white font-medium text-lg shadow-lg hover:scale-105 transform transition-all duration-300 ease-in-out"
           >
-            Download QR Code
+            📥 Download QR Code
           </button>
         </div>
         {/* Seller Info */}
