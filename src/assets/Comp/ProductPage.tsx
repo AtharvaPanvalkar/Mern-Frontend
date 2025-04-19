@@ -178,7 +178,7 @@ const downloadQR = () => {
             Download QR Code
           </button>
         </div> */}
-        <div className="mt-1 text-center">
+        <div className="text-center">
           {/* QR code canvas rendered but not visible */}
           <div ref={qrRef} style={{ visibility: "hidden" }}>
             <QRCodeCanvas value={window.location.href} size={128} />
