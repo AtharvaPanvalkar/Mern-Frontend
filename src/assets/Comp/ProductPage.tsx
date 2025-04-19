@@ -163,31 +163,19 @@ const downloadQR = () => {
             ? `In Stock: ${product.available}`
             : "Out of Stock"}
         </p>
-        {/* <div className="mt-8 text-center">
+        
+        <div className="flex items-center justify-center gap-x-4 mt-2">
+         
           <div
             ref={qrRef}
-            style={{ display: "none" }} // Hide the QR code
-            className="inline-block bg-white p-4 rounded shadow-md"
+            style={{ visibility: "hidden", height: 0, width: 0 }}
           >
-            <QRCodeCanvas value={window.location.href} size={128} />
-          </div>
-          <button
-            onClick={downloadQR}
-            className="mt-4 bg-black text-white px-6 py-2 rounded hover:bg-gray-800 transition duration-300"
-          >
-            Download QR Code
-          </button>
-        </div> */}
-        <div className="text-center">
-          {/* QR code canvas rendered but not visible */}
-          <div ref={qrRef} style={{ visibility: "hidden" }}>
             <QRCodeCanvas value={window.location.href} size={128} />
           </div>
 
-          {/* Download button */}
           <button
             onClick={downloadQR}
-            className="mt-1 px-6 py-3 rounded-xl bg-gradient-to-r from-black to-gray-800 text-white font-medium text-lg shadow-lg hover:scale-105 transform transition-all duration-300 ease-in-out"
+            className="px-5 py-2 rounded-lg bg-gradient-to-r from-black to-gray-800 text-white font-medium text-base shadow hover:scale-105 transform transition duration-300"
           >
             📥 Download QR Code
           </button>
