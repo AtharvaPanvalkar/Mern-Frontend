@@ -156,7 +156,6 @@ const downloadQR = () => {
             Download QR Code
           </button>
         </div>
-
         {/* Seller Info */}
         <div
           className="flex items-center mt-6 p-4 border-t"
