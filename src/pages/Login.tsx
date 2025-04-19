@@ -27,7 +27,8 @@ export function Login() {
 
     }else if (response.data.role === "User") {
       navigate("/User");
-
+    } else if (response.data.role === "Admin") {
+      navigate("/AdminHome");
     } else {
       navigate("/");
     }
