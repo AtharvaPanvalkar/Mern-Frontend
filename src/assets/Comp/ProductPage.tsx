@@ -147,7 +147,9 @@ const downloadQR = () => {
             ref={qrRef}
             className="inline-block bg-white p-4 rounded shadow-md"
           >
-            <QRCodeCanvas value={window.location.href} size={128} />
+            <div className="hidden">
+              <QRCodeCanvas value={window.location.href} size={128} />
+            </div>
           </div>
           <button
             onClick={downloadQR}
@@ -155,7 +157,7 @@ const downloadQR = () => {
           >
             Download QR Code
           </button>
-        </div>  
+        </div>
         {/* Seller Info */}
         <div
           className="flex items-center mt-6 p-4 border-t"
