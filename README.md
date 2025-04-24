@@ -52,3 +52,10 @@ export default tseslint.config({
   },
 })
 ```
+
+
+We have used React and Tailwind css with vite for Frontend.
+To Run The Frontend use command:
+npm run dev
+
+check package.json for scripts
